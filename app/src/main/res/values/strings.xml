@@ -2,4 +2,5 @@
     <string name="app_name">lab3</string>
     <string name="logo_text">Список дел</string>
     <string name="input_text">Мне надо сделать…</string>
+    <string name="add_button">Добавить</string>
 </resources>
