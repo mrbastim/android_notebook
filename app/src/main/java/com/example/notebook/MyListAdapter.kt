@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import android.widget.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import android.widget.Toast
+
 
 class MyListAdapter(
     context: Activity,
     private val dataSource: MutableList<ListItem>,
     private val coroutineScope: CoroutineScope,
     private val database: AppDatabase
-) : ArrayAdapter<ListItem>(context, R.layout.list_item) {
+) : ArrayAdapter<ListItem>(context, R.layout.list_item , dataSource) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.list_item, parent, false)
         val checkBox = view.findViewById<CheckBox>(R.id.checkBox)
@@ -27,6 +29,7 @@ class MyListAdapter(
                 database.listItemDao().delete(item)
                 dataSource.removeAt(position)
                 notifyDataSetChanged()
+                Toast.makeText(context, "Задача удалена", Toast.LENGTH_SHORT).show()
             }
         }
 
